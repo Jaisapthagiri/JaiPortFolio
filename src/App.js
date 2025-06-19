@@ -13,7 +13,7 @@ import Education from "./components/Education";
 import ProjectDetails from "./components/ProjectDetails";
 import styled from "styled-components";
 import Certification from "./components/Certification/index.js";
-
+import Snowfall from 'react-snowfall';
 
 const Body = styled.div`
   background-color: ${({ theme }) => theme.bg};
@@ -30,27 +30,38 @@ function App() {
   const [darkMode, setDarkMode] = useState(true);
   const [openModal, setOpenModal] = useState({ state: false, project: null });
   return (
-    <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
-      <Router >
-        <Navbar />
-        <Body>
-          <HeroSection />
-          <Wrapper>
-            <Skills />
-          </Wrapper>
-          <Projects openModal={openModal} setOpenModal={setOpenModal} />
-          <Wrapper>
-            <Education />
-            <Certification/>
-            <Contact />
-          </Wrapper>
-          <Footer />
-          {openModal.state &&
-            <ProjectDetails openModal={openModal} setOpenModal={setOpenModal} />
-          }
-        </Body>
-      </Router>
-    </ThemeProvider>
+    <>
+      <Snowfall
+        snowflakeCount={100}
+        style={{
+          position: 'fixed',
+          width: '100vw',
+          height: '100vh',
+          zIndex: 1000,
+        }}
+      />
+      <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
+        <Router >
+          <Navbar />
+          <Body>
+            <HeroSection />
+            <Wrapper>
+              <Skills />
+            </Wrapper>
+            <Projects openModal={openModal} setOpenModal={setOpenModal} />
+            <Wrapper>
+              <Education />
+              <Certification />
+              <Contact />
+            </Wrapper>
+            <Footer />
+            {openModal.state &&
+              <ProjectDetails openModal={openModal} setOpenModal={setOpenModal} />
+            }
+          </Body>
+        </Router>
+      </ThemeProvider >
+    </>
   );
 }
 
