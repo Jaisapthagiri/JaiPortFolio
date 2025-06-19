@@ -37,7 +37,8 @@ function App() {
           position: 'fixed',
           width: '100vw',
           height: '100vh',
-          zIndex: 1000,
+          zIndex: 9999,
+          pointerEvents: 'none',
         }}
       />
       <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
